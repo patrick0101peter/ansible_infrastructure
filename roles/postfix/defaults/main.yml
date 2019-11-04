@@ -1,0 +1,15 @@
+---
+# defaults file for postfix
+ansible_postfix_queue_directory: /var/spool/postfix
+ansible_postfix_command_directory: /usr/sbin
+ansible_postfix_daemon_directory: /usr/libexec/postfix
+ansible_postfix_data_directory: /var/lib/postfix
+ansible_postfix_mail_owner: postfix
+ansible_postfix_inet_interfaces: localhost
+ansible_postfix_inet_protocols: ipv4
+##ansible_postfix_mydestination:
+ansible_postfix_unknown_local_recipient_reject_code: '550'
+ansible_postfix_relayhost: mail.fnb.co.za
+ansible_postfix_message_size_limit: '31457280'
+
+

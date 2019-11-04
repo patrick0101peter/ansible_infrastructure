@@ -1,0 +1,31 @@
+[sandton_webservers]
+minion-01.lnx.com
+
+[randburg_webservers]
+minion-02.lnx.com
+
+[sandton_dbservers]
+minion-01.lnx.com
+
+[randburg_dbservers]
+minion-02.lnx.com
+
+# webservers in all geos
+[webservers:children]
+sandton_webservers
+randburg_webservers
+
+# dbservers in all geos
+[dbservers:children]
+sandton_dbservers
+randburg_dbservers
+
+# everything in the sandton geo
+[sandton:children]
+sandton_webservers
+sandton_dbservers
+
+# everything in the randburg geo
+[randburg:children]
+randburg_webservers
+randburg_dbservers

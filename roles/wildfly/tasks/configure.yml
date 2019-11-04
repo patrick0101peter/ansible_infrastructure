@@ -1,0 +1,27 @@
+---
+# task file for wildfly
+
+- name: Create wildfly etc directory
+  file:
+    path: '{{ wildfly_conf_dir }}'
+    state: directory
+    owner: '{{ wildfly_user }}'
+    group: '{{ wildfly_group }}'
+    mode: '0750'
+
+- name: Copy wildfly configuration
+  template:
+    src: wildfly.conf.j2
+    dest: '{{ wildfly_conf_dir }}/wildfly.conf'
+    owner: root
+    group: root
+    mode: '0640'
+  notify:
+    - restart wildfly
+    - change standalone data mode
+
+- name: Create symlink to /etc/default/wildfly.conf
+  file:
+    state: link
+    src: '{{ wildfly_conf_dir }}/wildfly.conf'
+    dest: /etc/default/wildfly.conf

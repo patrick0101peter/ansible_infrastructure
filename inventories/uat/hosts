@@ -1,0 +1,31 @@
+[sandton_webservers_uat]
+minion-01.example.com
+
+[randburg_webservers_uat]
+minion-02.example.com
+
+[sandton_dbservers_uat]
+minion-01.example.com
+
+[randburg_dbservers_uat]
+minion-02.example.com
+
+# webservers in all geos comes in uat
+[webservers_uat:children]
+sandton_webservers_uat
+randburg_webservers_uat
+
+# dbservers in all geos comes in uat
+[dbservers_uat:children]
+sandton_dbservers_uat
+randburg_dbservers_uat
+
+# everything in the sandton geo comes in uat
+[sandton_uat:children]
+sandton_webservers_uat
+sandton_dbservers_uat
+
+# everything in the randburg geo comes in uat
+[randburg_uat:children]
+randburg_webservers_uat
+randburg_dbservers_uat

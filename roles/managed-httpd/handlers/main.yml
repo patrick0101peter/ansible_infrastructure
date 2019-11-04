@@ -1,0 +1,4 @@
+---
+# handlers file for managed-httpd
+ - name: restart httpd
+   service: name=httpd state=restarted

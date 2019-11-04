@@ -1,0 +1,6 @@
+---
+ - hosts: randburg_webservers_int
+   roles:
+    - httpd
+    - ntp
+    - git

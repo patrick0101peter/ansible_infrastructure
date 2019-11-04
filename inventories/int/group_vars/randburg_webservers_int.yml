@@ -1,0 +1,23 @@
+---
+# Standard Variables
+ansible_port: 22
+ansible_user: ansible
+ansible_become: yes
+
+# Create a group for every user and make that their primary group
+users_create_per_user_group: true
+
+# If we're not creating a per-user group, then this is the group all users belong to
+users_group: test_users
+users_create_homedirs: true
+
+# The default shell for a user if none is specified
+users_default_shell: /bin/bash
+
+# Lists of users to create and delete
+users: []
+users_deleted: []
+
+groups_to_create: []
+
+authorized_keys_file: ".ssh/authorized_keys"

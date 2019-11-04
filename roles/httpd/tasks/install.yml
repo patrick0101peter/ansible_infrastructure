@@ -1,0 +1,11 @@
+---
+#Install apache
+  - name: Install httpd and its modules
+    vars:
+      package_name:
+       - httpd
+       - mod_proxy_html
+       - mod_ldap
+    yum:
+      name: '{{ package_name }}'
+      state: present

@@ -1,0 +1,56 @@
+ - hosts: randburg_webservers_int
+   remote_user: root
+   vars:
+    groups_to_create:
+      - name: jboss
+        gid: 3000
+    users:
+      - name: Jboss Application admin account
+        username: jboss
+        groups: [test_users, nagios]
+        generate_ssh_key: yes
+        profile: |
+          alias ll='ls -lah'
+          alias cp='cp -iv'
+   roles:
+     - users
+
+ - hosts: randburg_webservers_int
+   remote_user: root
+   vars:
+    users:
+      - name: Application account APP User 1
+        username: app2_user1
+        groups: [test_users, nagios, jboss]
+        profile: |
+          alias ll='ls -lah'
+          alias cp='cp -iv'
+   roles:
+     - users
+
+ - hosts: randburg_webservers_int
+   remote_user: root
+   vars:
+    users:
+      - name: Application account APP User 2
+        username: app2_user2
+        groups: [test_users, nagios, jboss]
+        profile: |
+          alias ll='ls -lah'
+          alias cp='cp -iv'
+   roles:
+     - users
+
+ - hosts: randburg_webservers_int
+   remote_user: root
+   vars:
+    users:
+      - name: Application account APP User 3
+        username: app2_user3
+        groups: [test_users, nagios, jboss]
+        shell: /bin/bash
+        profile: |
+          alias ll='ls -lah'
+          alias cp='cp -iv'
+   roles:
+     - users

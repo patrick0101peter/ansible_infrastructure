@@ -1,0 +1,31 @@
+[sandton_webservers_sit]
+minion-01.example.com
+
+[randburg_webservers_sit]
+minion-02.example.com
+
+[sandton_dbservers_sit]
+minion-01.example.com
+
+[randburg_dbservers_sit]
+minion-02.example.com
+
+# webservers in all geos comes in sit
+[webservers_sit:children]
+sandton_webservers_sit
+randburg_webservers_sit
+
+# dbservers in all geos comes in sit
+[dbservers_sit:children]
+sandton_dbservers_sit
+randburg_dbservers_sit
+
+# everything in the sandton geo comes in sit
+[sandton_sit:children]
+sandton_webservers_sit
+sandton_dbservers_sit
+
+# everything in the randburg geo comes in sit
+[randburg_sit:children]
+randburg_webservers_sit
+randburg_dbservers_sit

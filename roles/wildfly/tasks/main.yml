@@ -1,0 +1,24 @@
+---
+# task file for wildfly
+
+- include: install.yml
+  tags:
+   - wildfly_install
+   - wildfly
+
+- include: configure.yml
+  when: wildfly_manage_configuration
+  tags:
+   - wildfly_configure
+   - wildfly
+
+- include: users.yml
+  tags:
+   - wildfly_users
+   - wildfly
+
+- include: ssl.yml
+  when: wildfly_enable_ssl
+  tags:
+   - wildfly_ssl
+   - wildfly

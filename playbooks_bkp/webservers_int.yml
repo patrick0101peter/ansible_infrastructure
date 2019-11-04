@@ -1,0 +1,4 @@
+---
+ - hosts: webservers_int
+   roles:
+    - httpd 

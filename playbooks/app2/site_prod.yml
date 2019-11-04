@@ -1,0 +1,2 @@
+---
+ - import_playbook: app1_prod.yml

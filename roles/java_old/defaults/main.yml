@@ -1,0 +1,23 @@
+---
+# defaults file for java
+workspace: /opt
+
+# If git_install_from_source is set to false, these two variables define whether
+# to use an additional repo for the package installation, and which java packages
+# will be installed.
+java_enablerepo: ""
+java_packages:
+  - java-11-openjdk
+
+# If set to TRUE, git will be installed from source, using the version set with
+# the 'git_version' variable instead of using a package.
+java_install_from_source: true
+java_install_path: "/opt/"
+java_version: "8u92"
+
+# If java is already installed at and older version, force a new source build.
+# Only applies if java_install_from_source is `true`.
+java_install_from_source_force_update: true
+
+# Leave this at it's default.
+java_reinstall_from_source: false

@@ -1,0 +1,30 @@
+---
+##Install certificate on target machine
+
+ - name: Check if default SSL certificate exists
+   stat:
+     path: "{{ httpd_cert_dir }}/localhost.crt"
+   register: ssl_cert_file
+   when: httpd_ssl_certificate_file == 'localhost.crt'
+   tags: httpd
+
+ - name: Copy user defined key file
+   copy:
+     src: "{{ httpd_ssl_certificate_key_file }}"
+     dest: "{{ httpd_key_dir }}/{{ httpd_ssl_certificate_key_file }}"
+   when: httpd_ssl_certificate_key_file != 'localhost.key'
+   tags: httpd
+
+ - name: Copy Custome Certificate file
+   copy:
+     src: "{{ httpd_ssl_certificate_key_file }}"
+     dest: "{{ httpd_cert_dir }}/{{ httpd_ssl_certificate_file }}"
+   when: httpd_ssl_certificate_file != 'localhost.crt'
+   tags: httpd
+
+ - name: Copy Custome CA Certificates
+   copy:
+     src: "{{ httpd_ssl_ca_certificate_file }}"
+     dest: "{{ httpd_key_dir }}/{{ httpd_ssl_ca_certificate_file }}"
+   when: httpd_ssl_ca_certificate_file is defined
+   tags: httpd

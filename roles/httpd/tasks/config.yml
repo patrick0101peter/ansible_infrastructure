@@ -1,0 +1,19 @@
+---
+#Apache configuration
+  - name: Conigure httpd.conf
+    copy:
+      src: httpd.conf
+      dest: /etc/httpd/conf/httpd.conf
+      owner: root
+      group: root
+      mode: 0644
+    notify:
+      - restart httpd service
+
+  - name: Configure page on apache to host
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+      owner: apache
+      group: apache
+      mode: 0644

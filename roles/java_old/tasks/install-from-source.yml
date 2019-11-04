@@ -1,0 +1,30 @@
+---
+- name: Get installed version.
+  command: >
+    java -version
+    warn=no
+  changed_when: false
+  failed_when: false
+  check_mode: false
+  register: java_installed_version
+
+- name: Force java install if the version numbers do not match.
+  set_fact:
+    java_reinstall_from_source: true
+  when:
+    - java_install_from_source_force_update | bool
+    - (java_installed_version.rc == 0)
+
+- name: Download java.
+  get_url:
+    url: "http://minion-02.example.com/jdk-{{ java_version }}-linux-x64.tar.gz"
+    dest: "{{ workspace }}/java-{{ java_version }}-linux-x64.tar.gz"
+  when: (java_installed_version.rc != 0) or (java_reinstall_from_source | bool)
+
+- name: Expand java archive.
+  unarchive:
+    src: "{{ workspace }}/java-{{ java_version }}-linux-x64.tar.gz"
+    dest: "{{ workspace }}"
+    creates: "{{ workspace }}/java-{{ java_version }}/README"
+    copy: false
+  when: (java_installed_version.rc != 0) or (java_reinstall_from_source | bool)

@@ -1,0 +1,9 @@
+---
+- name: find contents in a file
+  hosts: all
+  tasks:
+    - shell: cat /etc/issue
+      register: issue_contents
+
+    - shell: echo "issue contains the word RMB"
+      when: issue_contents.stdout.find('RMB') != -1
